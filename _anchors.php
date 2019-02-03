@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name:     _anchors
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
+ * Plugin Name:     _Anchors
+ * Plugin URI:      https://github.com/miya0001/_anchors
+ * Description:     A WordPress plugin that generates and displays anchor links from h2 in the contents.
+ * Author:          Takayuki Miyauchi
+ * Author URI:      https://takayukimiyauchi.jp/
  * Text Domain:     _anchors
  * Domain Path:     /languages
  * Version:         nightly
