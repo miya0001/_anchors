@@ -1,0 +1,13 @@
+.anchor-links
+{
+	padding: 1em;
+	margin: 0;
+	background-color: #f7f7f7;
+	border: 1px solid #dedede;
+	font-size: 90%;
+}
+
+.anchor-links li
+{
+	margin-left: 1em;
+}
