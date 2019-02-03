@@ -6,33 +6,32 @@ notifications:
     on_failure: change
 branches:
   only:
-    - master
-    - "/^v?[0-9\\.]+/"
+  - master
+  - "/^v?[0-9\\.]+/"
 cache:
-  - composer
-  - "$HOME/.composer/cache"
+- composer
+- "$HOME/.composer/cache"
 php:
-  - 7.0
-  - 7.2
+- 7.0
+- 7.2
 env:
-  # - WP_VERSION=latest WP_MULTISITE=0
-  - WP_VERSION=nightly WP_MULTISITE=0
+- WP_VERSION=nightly WP_MULTISITE=0
 before_script:
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-  - composer global require "phpunit/phpunit=4.8.*|6.*"
-  - composer install
+- export PATH="$HOME/.composer/vendor/bin:$PATH"
+- bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+- composer global require "phpunit/phpunit=4.8.*|6.*"
+- composer install
 script:
-  - phpunit
+- phpunit
 after_success:
-  - sed -i -e "s/nightly/${TRAVIS_TAG}/" _anchors.php
-  - curl https://raw.githubusercontent.com/miya0001/auto-build/master/auto-build.sh
-    | bash
+- sed -i -e "s/nightly/${TRAVIS_TAG}/" _anchors.php
+- curl https://raw.githubusercontent.com/miya0001/auto-build/master/auto-build.sh
+  | bash
 deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: "kSPKr+yZ6BqAvYW9Y9FUUyUVg6v37iiG7JJXAS44ypXTAuWGqXUJocbUTCb90DgegL3Cgww8CVoYzYHngiBsyB+jWKMBBFUQpk6k6iQXAk4WAG1+2987mhKyiKjIJEzoS4vgSIs/6ZTEet5TWNQZWGoWbR9uNDvtkbRFQFtcvlBsjuqtuExMXIG+hqUA/l6XWHXCOUbZmMVpd7m0e99f/dsVpOhiKmIYuzoowCuhQAhfYJVSkjwTJsuIUbbhysxwSV7mdo+7eTt3HHEzZ9xip4Enu5e7XZPrrwwb/R3y6pygb48gw86xfSyOYoqwIH28XnBv2anAjkTbW48z0ZRgTGywzq6XkDxtGn7r4lzk5ISwA68/QNytHOFsiYrkDaAMrB7KeD3M1+xcID2XPU3SpCeqrttMJrWUbd+54qnh+TS4v7KKXPehLo/uiqOsigokVyGIaqravibE2Iy0giVjoudW8HRsu6ETESwcHA/D0cLHrNu6Brw5D/SFzSWkJkR4aEfcQqIM+7OsnwptqUvgXWK4sK+KBe3MgPA/hmDGoBE/l7tn2rBjsHwW1USHfWAQWYWk9S2ZLjt0S/X+HNjw9Wk68YhlYUWPf+OWRtZs4oymjz2AP+xadbH5ymNG0KA38fQyqLcvg1TBazFL8Ed1erz4a15820nlJk/AlhVcOeY="
+    secure: eIy3YGXFfgYmYYSgCojEMltaIH7qRNr1BydnEzt3K5gESlujccUlO+dO6k3aA8hfQR7UlxqBQih66o9SEridw/EBG1aegNviDuFyfbbn56Sr5QbwNtxDu9BXQAdhovM8n8/OZtr0fgMnJfck2JUsEJ42dHhYOS9uJJtwAu01vUTQnl1SgKW53Uu3YNG3Qg2POXTxaad9FW550kCQAOSFS3rJLocurMCTmIB+LZ6PquuT2fXBi7MSSih8alTbF8pMctoX7FQQ7msTfV6/5o/l8bnRGTFS+XdJzDLtll7K0kXBjGK2exSRi7pBjxejvIchTvkUTk7CvbJXdTzOqP0bFl/old/a5SgU5kvTD/pKSm7AJl3hE4vlxZaBgApRWGYNH8S73ABLYs0IiIay8VUaF4qOez+ClaW7gkTHZrJ1fQdG4J+3cTSNgHYVPaDj535HfB6/X4J5/94O87/WTEx6LYGg0bxI14uAVGZCwGKciIB/a1XqeVKkx5vKM32/OxhZedta/Mjg2P7xk69pv5m69GEcUYuGtT7OMrr87KiBqfOxgGaEalEanHzRIzdnsmqQP5104+RMZo/wkSiDj/tTf26dS19t7XnSgxORxvP1oyTgC9YcRsrtVvUV+GIz2WF9ABim6SjiBsN4p/PgcxTNkDWNLDWxQpNH5plFNxDsvkA=
   file: _anchors.zip
   on:
     tags: true
