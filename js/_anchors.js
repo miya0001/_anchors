@@ -20,6 +20,7 @@
 		} else {
 			id = 'link-' + i;
 			h.id = id;
+			h.classList.add( 'anchor' );
 		}
 
 		links[id] = h.innerText;
@@ -42,11 +43,7 @@
 		ul.appendChild( li );
 
 		a.addEventListener( 'click', function( event ) {
-			document.querySelector( '#' + this.dataset.target ).scrollIntoView( {
-				block: "start",
-				behavior: "smooth"
-			} );
-			location.hash = '#' + this.dataset.target;
+			location.href = '#' + this.dataset.target;
 			event.preventDefault();
 		} );
 	}
