@@ -43,8 +43,10 @@
 
 		a.addEventListener( 'click', function( event ) {
 			document.querySelector( '#' + this.dataset.target ).scrollIntoView( {
+				block: "start",
 				behavior: "smooth"
 			} );
+			location.hash = '#' + this.dataset.target;
 			event.preventDefault();
 		} );
 	}
